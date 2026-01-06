@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kelas 8 SCP 1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #6a00ff, #0b001a);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 20px #9d4edd;
+    }
+
+    h1 {
+      color: #c77dff;
+    }
+
+    .galaxy {
+      margin-top: 60px;
+    }
+
+    .password-box {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #7b2cbf;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #9d4edd;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #c77dff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌌 Kelas 8 SCP 1 🌌</h1>
+  <p>Tema Alam Semesta</p>
+</header>
+
+<div class="galaxy">
+  <h2>Selamat Datang</h2>
+  <p>Website resmi kelas</p>
+</div>
+
+<div class="password-box">
+  <h3>🔒 Halaman Privat</h3>
+  <input type="password" id="password" placeholder="Masukkan password">
+  <br>
+  <button onclick="cekPassword()">Masuk</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<script>
+  function cekPassword() {
+    const password = document.getElementById("password").value;
+    const passwordBenar = "danengreenflag"; // GANTI PASSWORD DI SINI
+
+    if (password === passwordBenar) {
+      window.location.href = "dataprivasi.html";
+    } else {
+      document.getElementById("error").innerText = "Password salah!";
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🚀 Kelas 8 scp 1 — Luar Angkasa Ungu</title>
+  <meta name="description" content="Web resmi kelas bertema luar angkasa (ungu) dengan jadwal, anggota, tugas, dan kontak." />
+
+  <!-- Google Font (opsional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-deep: #0b0616;     /* latar sangat gelap */
+      --primary: #7A3EB1;     /* ungu utama */
+      --accent: #C084F5;      /* ungu terang untuk aksen */
+      --text: #EAE6F7;        /* teks terang */
+      --muted: #B9A7D9;       /* teks sekunder */
+      --card: rgba(255,255,255,0.08); /* glass card */
+      --card-border: rgba(200,150,255,0.25);
+      --shadow: 0 10px 30px rgba(122, 62, 177, 0.25);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0;
+      background: radial-gradient(1200px 800px at 70% 10%, #1b1030 10%, #0f0a1f 40%, var(--bg-deep) 100%);
+      color: var(--text);
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Animasi bintang */
+    .stars, .twinkle {
+      position: fixed; inset: 0; z-index: -2;
+      background: transparent;
+      pointer-events: none;
+    }
+    .stars {
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.7), transparent 40%),
+        radial-gradient(1.5px 1.5px at 60% 80%, rgba(255,255,255,0.6), transparent 40%),
+        radial-gradient(1.5px 1.5px at 85% 25%, rgba(255,255,255,0.6), transparent 40%),
+        radial-gradient(2px 2px at 10% 75%, rgba(255,255,255,0.8), transparent 40%),
+        radial-gradient(2px 2px at 40% 55%, rgba(255,255,255,0.6), transparent 40%);
+      filter: drop-shadow(0 0 2px rgba(192,132,245,0.35));
+    }
+    .twinkle {
+      animation: twinkle 6s infinite;
+      background-image:
+        radial-gradient(1.5px 1.5px at 30% 20%, rgba(192,132,245,0.9), transparent 40%),
+        radial-gradient(1px 1px at 75% 65%, rgba(192,132,245,0.8), transparent 40%),
+        radial-gradient(1.5px 1.5px at 50% 40%, rgba(192,132,245,0.8), transparent 40%);
+    }
+    @keyframes twinkle {
+      0%,100% {opacity:.2} 50% {opacity:.7}
+    }
+
+    /* Navbar */
+    header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(11,6,22,0.75), rgba(11,6,22,0.35));
+      border-bottom: 1px solid rgba(200,150,255,0.15);
+    }
+    .nav{
+      max-width: 1100px; margin: 0 auto; padding: 14px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; letter-spacing: .5px;
+    }
+    .brand .logo{
+      width:34px; height:34px; border-radius:50%;
+      background: radial-gradient(circle at 35% 30%, #d9b4ff, #9a5ed6 45%, #3a1b5f 100%);
+      box-shadow: 0 0 18px rgba(192,132,245,0.6), inset 0 0 10px rgba(255,255,255,0.2);
+    }
+    .brand .text {color: var(--text)}
+    nav a{
+      color: var(--text); text-decoration:none; font-weight:600;
+      margin-left:18px; padding:8px 12px; border-radius:10px;
+      transition: .2s ease;
+    }
+    nav a:hover{
+      background: rgba(192,132,245,0.15);
+      box-shadow: 0 6px 16px rgba(122,62,177,0.25);
+    }
+
+    /* Hero */
+    .hero{
+      max-width: 1100px; margin: 0 auto; padding: 48px 20px 28px;
+      display:grid; grid-template-columns: 1.3fr 1fr; gap:28px;
+    }
+    .hero-card{
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px; padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .hero h1{
+      margin: 0 0 10px; font-size: clamp(28px, 5vw, 44px);
+      background: linear-gradient(90deg, #EAE6F7, #C084F5 60%, #9a5ed6);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p{color: var(--muted); margin: 0 0 18px}
+    .hero .cta{
+      display:flex; gap:12px; flex-wrap: wrap;
+    }
+    .btn{
+      border: 1px solid var(--card-border);
+      background: linear-gradient(180deg, rgba(192,132,245,0.18), rgba(192,132,245,0.05));
+      color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight:600;
+      text-decoration: none; display:inline-flex; align-items:center; gap:10px;
+      transition: transform .1s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow) }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(122,62,177,0.35), rgba(122,62,177,0.18));
+      border-color: rgba(122,62,177,0.45);
+    }
+
+    /* Grid sections */
+    .section{
+      max-width:1100px; margin: 0 auto; padding: 36px 20px;
+    }
+    .section h2{
+      margin:0 0 18px; font-size: clamp(22px, 3.6vw, 32px);
+      color: #EAE6F7;
+    }
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      margin: 0 0 8px; font-size: 18px; color: #EAE6F7;
+    }
+    .card p{ margin: 0 0 12px; color: var(--muted) }
+    .badge{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      background: rgba(192,132,245,0.18); border: 1px solid rgba(192,132,245,0.35);
+      color: var(--text); font-weight:600; font-size: 12px;
+    }
+
+    /* Tabel jadwal */ 
+    .table{
+      width:100%; border-collapse: collapse; overflow:hidden;
+      border: 1px solid var(--card-border); border-radius: 12px;
+    }
+    .table th, .table td{
+      padding: 12px 14px; text-align:left;
+      border-bottom: 1px solid rgba(200,150,255,0.15);
+    }
+    .table thead th{
+      background: rgba(122,62,177,0.25);
+      color: #fff;
+    }
+    .table tbody tr:hover{
+      background: rgba(192,132,245,0.08);
+    }
+
+    /* Footer */
+    footer{
+      padding: 22px; text-align:center; color: var(--muted);
+      border-top: 1px solid rgba(200,150,255,0.15);
+      background: linear-gradient(180deg, rgba(11,6,22,0.35), rgba(11,6,22,0.65));
+    }
+
+    /* Responsif */
+    @media (max-width: 900px){
+      .hero { grid-template-columns: 1fr }
+      .grid { grid-template-columns: 1fr 1fr }
+    }
+    @media (max-width: 620px){
+      nav a { margin-left:10px }
+      .grid { grid-template-columns: 1fr }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="twinkle"></div>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="text">Kelas 8 scp 1S</div>
+      </div>
+      <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#jadwal">Jadwal</a>
+        <a href="#anggota">Anggota</a>
+        <a href="#tugas">Tugas</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="beranda" class="hero">
+    <section class="hero-card">
+      <h1>Selamat datang di Kelas 8 SCP 1</h1>
+      <p>Website kelas ini resmi dibuat oleh danendra. Temukan jadwal, tugas, info anggota, dan pengumuman terbaru di sini.</p>
+      <div class="cta">
+        <a class="btn primary" href="#jadwal">Lihat Jadwal</a>
+        <a class="btn" href="#tugas">Cek Tugas</a>
+        <a class="btn" href="#anggota">Daftar Anggota</a>
+      </div>
+    </section>
+    <section class="hero-card">
+      <h3>Pengumuman Terbaru</h3>
+      <p><span class="badge">Info</span> libur bossku.</p>
+      <p><span class="badge">Event</span> libur bossku.</p>
+    </section>
+  </main>
+
+  <section id="jadwal" class="section">
+    <h2>Jadwal pelajaran minggu ini</h2>
+    <div class="card">
+      <table class="table" aria-label="Jadwal pelajaran">
+        <thead>
+          <tr>
+            <th>Hari</th>
+            <th>Mata Pelajaran</th>
+            <th>Waktu</th>
+            <th>Guru</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Senin</td><td>B.INDO</td><td>08.00–09.45</td><td>Bu Ati'ul</td></tr>
+          <tr><td></td><td>IPA</td><td>10.30–12-00</td><td>pak Teguh</td></tr>
+          <tr><td></td><td>PEMINATAN</td><td>13.15–14-45</td><td>??????</td></tr>
+          <tr><td>Selasa</td><td>PJOK</td><td>08.00–09.45</td><td>Pak Haris</td></tr>
+          <tr><td></td><td>B.ING</td><td>10.30–12-00</td><td>Bu Farikhah</td></tr>
+          <tr><td></td><td>B.ARAB</td><td>13.15–13-43</td><td>pak Muslih</td></tr>
+          <tr><td></td><td>PEND.PANCASILA</td><td>13.45–14-45</td><td>pak Fizal</td></tr>
+          <tr><td>rabu</td><td>B.INDO</td><td>08.00–09.45</td><td>Bu Ati'ul</td></tr>
+          <tr><td></td><td>MATH</td><td>10.30–12-00</td><td>Bu Arina</td></tr>
+          <tr><td></td><td>SENI RUPA</td><td>13.15–14.15</td><td>pak Eko</td></tr>
+          <tr><td></td><td>BK</td><td>14.15–14-45</td><td>Bu Susanti</td></tr>
+          <tr><td>Kamis</td><td>Kimia</td><td>07.00–08.40</td><td>Pak Surya</td></tr>
+          <tr><td>Jumat</td><td>Informatika</td><td>07.00–08.40</td><td>Bu Nisa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="anggota" class="section">
+    <h2>Anggota kelas</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Ketua Kelas</h3>
+        <p>Nama: Chelo</p>
+        <p>Tugas: Koordinasi kelas, pengumuman.</p>
+        <span class="badge">Kontak: non</span>
+      </div>
+      <div class="card">
+        <h3>Wakil Ketua</h3>
+        <p>Nama: Dea</p>
+        <p>Tugas: Mendampingi ketua, dokumentasi.</p>
+        <span class="badge">Kontak: </span>
+      </div>
+      <div class="card">
+        <h3>Sekretaris</h3>
+        <p>Nama:Flaa </p>
+        <p>Tugas: nagsipenguman, logistik acara.</p>
+        <span class="badge">Kontak: non</span>
+      </div>
+      <div class='card'>
+        <h4>Ketua Kelas</h4>
+        <p>Nama: Raihan</p>
+        <p>Tugas: Koordinasi kelas, pengumuman.</p>
+        <span class="badge">Kontak: non</span>
+      </div>
+      <div class="card">
+        <h5>Wakil Ketua</h5>
+        <p>Nama: Chilla</p>
+        <p>Tugas: Mendampingi ketua, dokumentasi.</p>
+        <span class="badge">Kontak: </span>
+      </div>
+      <div class="card">
+        <h3>Sekretaris</h3>
+        <p>Nama:Ghalin </p>
+        <p>Tugas: nagsipenguman, logistik acara.</p>
+        <span class="badge">Kontak: non</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="tugas" class="section">
+    <h2>Daftar tugas</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Tugas Fisika — Gelombang</h3>
+        <p>Deadline: 24 Des 2025</p>
+        <p>Instruksi: Kerjakan soal nomor 1–10, sertakan grafik amplitudo.</p>
+        <span class="badge">Status: Berlangsung</span>
+      </div>
+      <div class="card">
+        <h3>Esai Bahasa Indonesia — Opini</h3>
+        <p>Deadline: 26 Des 2025</p>
+        <p>Instruksi: 500–700 kata, gunakan 3 referensi.</p>
+        <span class="badge">Status: Baru</span>
+      </div>
+      <div class="card">
+        <h3>Praktikum Kimia — Titrasi</h3>
+        <p>Deadline: 29 Des 2025</p>
+        <p>Instruksi: Laporan lengkap dengan perhitungan Molaritas.</p>
+        <span class="badge">Status: Menunggu</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak" class="section">
+    <h2>Kontak dan saran</h2>
+    <div class="card">
+      <form id="formKontak">
+        <div style="display:grid; gap:12px; grid-template-columns: 1fr 1fr;">
+          <div>
+            <label for="nama">Nama</label><br/>
+            <input id="nama" name="nama" type="text" placeholder="Nama kamu" required
+              style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--card-border); background: rgba(255,255,255,0.07); color: var(--text);" />
+          </div>
+          <div>
+            <label for="email">Email</label><br/>
+            <input id="email" name="email" type="email" placeholder="email@contoh.com" required
+              style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--card-border); background: rgba(255,255,255,0.07); color: var(--text);" />
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <label for="pesan">Pesan</label><br/>
+          <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis saran atau pertanyaan..."
+            style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--card-border); background: rgba(255,255,255,0.07); color: var(--text);"></textarea>
+        </div>
+        <div style="margin-top:14px; display:flex; gap:10px;">
+          <button type="submit" class="btn primary">Kirim</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+        <p id="status" style="color: var(--muted); margin-top: 10px;"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Kelas Andromeda — Tema luar angkasa ungu. Dibuat dengan semangat eksplorasi.
+  </footer>
+
+ 
+<header>
+  <h1>🌌 Kelas 8 SCP 1 🌌</h1>
+  <p>Website resmi kelas</p>
+</header>
+
+<main>
+  <h2>Selamat Datang</h2>
+  <p>Berisi privasi anak kelas yang kesebar 1 kelas tapi tidak satu sekolah</p>
+</main>
+
+<div class="privasi-wrapper">
+  <button class="privasi-btn" id="btnPrivasi">
+    🔒 Masuk Privasi
+  </button>
+</div>
+
+<script>
+  document.getElementById("btnPrivasi")
+    .addEventListener("click", function () {
+      window.location.href = "privasi.html";
+    });
+</script>
+
+</body>
+</html>
